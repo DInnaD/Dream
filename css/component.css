@@ -535,7 +535,7 @@
 }
 
 .button-color {
-	font-size: 1.75em;
+	font-size: 0.9em;
 	position: absolute;
 	top: 50%;
 	right: 0;
@@ -547,7 +547,7 @@
 	color: #575a61;
 	border: 2px solid;
 	border-radius: 50%;
-	background: none;
+	/*background: none;*/
 	padding: 0;
 }
 
