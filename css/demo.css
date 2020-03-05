@@ -26,8 +26,8 @@ body {
 
 a {
 	outline: none;
-	color: #575A61;
-	text-decoration: none;
+	color: #eee;/*#575A61;*/
+	/*text-decoration: none;*/
 }
 
 a:hover, a:focus {
