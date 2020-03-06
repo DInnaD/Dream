@@ -64,7 +64,7 @@ a:hover, a:focus {
 	padding: 0.5em 0 1em;
 	color: #5F6269;
 	font-weight: bold;
-	font-size: 0.45em;
+	font-size: 63%;/*0.45em;*/
 }
 
 /* Top Navigation Style */
