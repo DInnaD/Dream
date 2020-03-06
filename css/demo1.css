@@ -157,5 +157,10 @@ a:focus {
 	.codrops-icon span {
 		display: none;
 	}
+	
+	
+.container1 > header {
+	padding: 5em;
+}
 
 }
