@@ -40,6 +40,19 @@ a:focus {
 	color: #fff;
 }
 
+.a {
+
+    color: rgba(0,0,0,0.4);
+    /* text-decoration: none; */
+    outline: none;
+    font-size: 0.6em;
+}
+
+.a:hover,
+.a:focus {
+	color: #fff;
+}
+
 .container > header {
 	margin: 0 auto;
 	padding: 2em;
