@@ -58,7 +58,7 @@ a:focus {
 	display: block;
 	font-size: 63%;
 	font-weight: 400;
-	color: rgba(0,0,0,0.4);
+	/*color: rgba(0,0,0,0.4);*/
 	padding: 0.2em 0 0.6em 0.1em;
 }
 
