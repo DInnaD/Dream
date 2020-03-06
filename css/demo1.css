@@ -152,11 +152,21 @@ a:focus {
 	font.weight: 300;
 }
 
+.text {
+	padding:10px 500px;
+	text-align:center;
+}
+
 @media screen and (max-width: 25em) {
 
 	.codrops-icon span {
 		display: none;
 	}
+	
+	.text {
+	padding:0px 0px;
+	text-align:center;
+}
 	
 	
 .container1 > header {
