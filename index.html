@@ -14,6 +14,11 @@
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
   		<script src="js/modernizr.custom.js"></script>
+		<!--draggeble-->
+		<link rel="stylesheet" type="text/css" href="css/normalize1.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo1.css" />
+		<link rel="stylesheet" type="text/css" href="css/component1.css" />
+		<script src="js/modernizr1.custom.js"></script>
 		
 			<script>
 var canvas = document.getElementById("slider");
@@ -194,15 +199,47 @@ download_img = function(el) {
 					</ul>
 				</div><!-- /tools -->
 			</div>
-			
 			<header class="codrops-header">
-				<h1></h1>
+				<h1><span>Віршики Від Грети</span></h1>
 				<div class="codrops-links">
 					<a class="codrops-icon codrops-icon--prev" href="https://dinnad.github.io/DrawingDreams" title="Розмалюй Мрії, Дитино!"><span>Розмалюй Мрії, Дитино!</span></a>
 					
 					<!--a class="codrops-icon codrops-icon--prev" href="https://dinnad.github.io/PoemDream" title="Попередня Грандіозна Виставка Мрії!"><span>Попередня Виставка Мрії</span></a-->
 					
 					<a class="codrops-icon codrops-icon--drop" href="https://dinnad.github.io/PoemDream2" title="Наступна Грандіозна Виставка Мрії!"><span>Наступна Виставка Мрії</span></a>
+				</div>
+				<h1>Грето! <br>Знання про домашніх<br>
+					тваринок<br> тобі в долоні,<br> 
+					Мрії<br>
+					Дружби й Любові!<span></span></h1>
+			</header>
+			<div class="container1">
+			<header>
+				<h1><span>Перетягни карточку і побачиш наступну <a href="">
+Скачати, роздрукувати та подарувати близьким Кольорові Малюнки Своєї Мрії та Вірші Своєї Мрії на цих малюнках.jpg</a></span></h1>
+			</header>
+			<ul id="elasticstack" class="elasticstack">
+				<li><img src="img/1.jpg" alt="640426"/><h5>Saudade</h5></li>
+				<li><img src="img/2.jpg" alt="02"/><h5>Tuqburni</h5></li>
+				<li><img src="img/3.jpg" alt="03"/><h5>Retrouvailles</h5></li>
+				<li><img src="img/4.jpg" alt="04"/><h5>Onsra</h5></li>
+				<li><img src="img/5.jpg" alt="05"/><h5>Mamihlapinatapai</h5></li>
+				<li><img src="img/6.jpg" alt="06"/><h5>Koi No Yokan</h5></li>
+			</ul>
+			<header>
+				<h1><span>Перетягни карточку і побачиш наступну <a href="">
+Додати Кольорові Малюнки Своєї Мрії та Вірші Своєї Мрії на цих малюнках.jpg</a></span></h1>
+			</header>
+			</div>
+			<header class="codrops-header">
+				<h1><span>Казка Від Грети</span></h1>
+				<div class="codrops-links">
+					<a class="codrops-icon codrops-icon--prev" href="https://dinnad.github.io/DrawingDreams" title="Розмалюй Мрії, Дитино!"><span>Розмалюй Мрії, Дитино!</span></a>
+					
+					<!--a class="codrops-icon codrops-icon--prev" href="https://dinnad.github.io/PoemDream" title="Попередня Грандіозна Виставка Мрії!"><span>Попередня Виставка Мрії</span></a-->
+					
+					<a class="codrops-icon codrops-icon--drop" href="https://dinnad.github.io/PoemDream2" title="Наступна Грандіозна Виставка Мрії!"><span>Наступна Виставка Мрії</span></a>
+				</div>
 				<h1>Грето! <br>Знання про домашніх<br>
 					тваринок<br> тобі в долоні,<br> 
 					Мрії<br>
@@ -312,8 +349,15 @@ download_img = function(el) {
 				<!--p><strong>Images by <a href="http://kaboompics.com/">kaboompics.com</a></strong></p-->
 			</section>
 		</div><!-- /container -->
+	<!-- colorExstraction -->
 		<script src="js/classie.js"></script>
 		<script src="js/Vibrant.min.js"></script>
 		<script src="js/main.js"></script>
+	<!-- draggeble -->		
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/elastiStack.js"></script>
+		<script>
+			new ElastiStack( document.getElementById( 'elasticstack' ) );
+		</script>
 	</body>
 </html>
