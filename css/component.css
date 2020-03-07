@@ -411,7 +411,7 @@
 	position: relative;
 	max-width: 640px;
 	margin: 0 auto;
-	padding: .75em 80px 0 0;
+	padding: 350px;/*.75em 80px 0 0;*/
 	text-align: left;
 }
 
@@ -693,7 +693,7 @@
 		background: rgba(255,255,255,.1);
 	}
 	.tools {
-		padding: .5em 0;
+		padding: 200px;
 	}
 	.palette {
 		text-align: center;
