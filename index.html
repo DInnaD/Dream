@@ -296,7 +296,7 @@ $.ajax({
 			var localtime = location.localtime;
 			var latitude = location.lat;
 			var longitude = location.lon;
-			var weatherUrl = 'https://api.darksky.net/forecast/7353c4ca1f3017f3868f78fac0070c3e/' + latitude + ',' + longitude;
+			var weatherUrl = 'https://api.darksky.net/forecast/7353c4ca1f3017f3868f78fac0070c3e/' + latitude + ',' + longitude + '?exclude=currently,flags';
       getWeatherInfo(weatherUrl);//https://cors-anywhere.herokuapp.com/
 			
 		}
