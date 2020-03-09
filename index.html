@@ -279,6 +279,49 @@ download_img = function(el) {
 	</div>
   </section>  
   <script>
+$.ajax({
+    async: true,
+    crossDomain: true,
+    url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCB7eXQgDDLJM1Ih386aUUlfMRt9n_oV0w",
+    dataType: 'json',
+    method: "POST",
+    headers: {
+      "cache-control": "no-cache",
+      "postman-token": "1c393233-0c8c-8ef1-3efe-3173b8928077"
+    },
+    template: '<a href="{{link}}" target="_blank"><img src="{{image}}" /><div class="likes">&hearts; {{likes}}</div></a>',
+    success: function(response) {
+			console.log(response);
+      			var location = response.location;
+			var localtime = location.localtime;
+			var latitude = location.lat;
+			var longitude = location.lon;
+			var weatherUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/7353c4ca1f3017f3868f78fac0070c3e/' + latitude + ',' + longitude;
+      getWeatherInfo(weatherUrl);
+			
+		}
+    });
+// code for ajax request to weather API
+  function getWeatherInfo(url) {
+  console.log(url);
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      success: function(response) {
+	      console.log(response);
+        var location = response.location;
+        var current = response.currently.temperature.toFixed();
+	var currentTempUnit =
+	
+        var convertFromFtoC = function(num){
+         num = Math.round(((num - 32) / 1.8 + 0.00001) * 100 / 100).toFixed();
+         return num;
+        }
+        
+	if (response.currentTempUnit=="F") {
+            var c = response.convertFromFtoC(response.current);                       
+         }
+	  /***************/
 var galleryFeed3 = new Instafeed({
   get: "user",
   userId: 6715816580,
@@ -296,12 +339,23 @@ var galleryFeed3 = new Instafeed({
   filter: function(image) {
 
       console.log(image);
-      if(image.tags.indexOf('') >= 0 && foundImages < maxImages) {
-            foundImages = foundImages + 1;
-            return true;
-         }
-  },	  
+      
+      
+        return false;	  
+  },
   after: function() {
+    var images = $("#instafeed3").find('a');
+    $.each(images, function(index, image) {
+	    console.log(index);
+	    console.log(image);
+      var delay = (index * 75) + 'ms';
+      $(image).css('-webkit-animation-delay', delay);
+      $(image).css('-moz-animation-delay', delay);
+      $(image).css('-ms-animation-delay', delay);
+      $(image).css('-o-animation-delay', delay);
+      $(image).css('animation-delay', delay);
+      $(image).addClass('animated flipInX');
+    });
     // disable button if no more results to load
     if (!this.hasNext()) {
       btnInstafeedLoad3.setAttribute('disabled', 'disabled');
