@@ -416,6 +416,44 @@ download_img = function(el) {
 					як полити квіти, погодувати вуличних тваринок, до магазину сходити,
 					подрузі зателефонувати під Кольори Настрою її Мрії?</span></h1>
 			</header>
+  <section class="intro">
+       <div class="intro-body">
+            <div class="container">
+                 <div class="row">                    
+                    <div class="column column-1">  
+                	<div id="instafeed-gallery-feed" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load" class="btn">Load more</button>  
+                    </div>
+                </div>
+	     </div>
+	</div>
+  </section>  
+  <script>
+		   
+
+var galleryFeed = new Instafeed({
+  get: "user",
+  userId: 6715816580,
+  accessToken: "6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450",
+  resolution: "standard_resolution",
+  useHttp: "true",
+  limit: 6,
+  template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes"><i class="icon ion-heart"></i> {{likes}}</span><span class="comments"><i class="icon ion-chatbubble"></i> {{comments}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
+  target: "instafeed-gallery-feed",
+  after: function() {
+    // disable button if no more results to load
+    if (!this.hasNext()) {
+      btnInstafeedLoad.setAttribute('disabled', 'disabled');
+    }
+  },
+});
+galleryFeed.run();
+
+var btnInstafeedLoad = document.getElementById("btn-instafeed-load");
+btnInstafeedLoad.addEventListener("click", function() {
+  galleryFeed.next()
+});
+ </script>
 			<header class="codrops-header">
 				<h1><span>Про Виставки Інших Мрійників Від Грети!!!</span></h1>
 				<div class="codrops-links">
