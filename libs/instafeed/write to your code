@@ -1,0 +1,78 @@
+<script type="text/javascript" src="path/to/instafeed.min.js"></script>
+
+<script type="text/javascript">
+var userFeed = new Instafeed({
+get: 'user',
+userId: 'YOUR_USER_ID',
+accessToken: 'YOUR_ACCESS_TOKEN'
+});
+userFeed.run();
+</script>
+
+inst logining  http://instagram.pixelunion.net/#access_token=2321088784.1677ed0.bde13057fffd4b30aad200715ee85b61
+
+2321088784  //access token dotochki
+.1677ed0.bde13057fffd4b30aad200715ee85b61  //access token
+
+<div id="instafeed"></div>
+
+
+<script type="text/javascript" src="../api/instafeed/instafeed.min.js"></script>    
+<script type="text/javascript">
+var userFeed = new Instafeed({
+get: 'liliia_danylevska',
+userId: 'cdeab20e34cc432fad54ab2e35a30bf2',
+accessToken: '2321088784'
+});
+userFeed.run();
+</script>    
+
+
+
+<div id="instafeed"></div> 
+
+*************************************************************************************bestvariant
+Родной вариант (добавлено 8 июня 2016)
+
+Требуется jQuery.
+
+Скачиваем instagramGet.js.zip [830 b] (cкачиваний: 154) и подключаем:
+
+ $("#instagram").instagramGet({
+"user_id": "cdeab20e34cc432fad54ab2e35a30bf2",
+"access_token": "2321088784",
+"count": 12
+});
+
+Добавляем на страницу:
+
+<ul id="instagram"></ul>
+
+
+///////////////////////////
+
+var feed = new Instafeed({
+  limit: '10',
+  sortBy: 'most-liked',
+  resolution: 'standard_resolution',
+  clientId: 'xxxxx', 
+  template:'<div class="tile"><div class="text"><b>{{likes}} &hearts; </b>{{model.user.full_name}}</div><img class="item" src="{{image}}"></div>',
+  filter: function(image) {
+    return image.type === 'video';
+  }
+});
+
+
+mistake with video/////////////////////
+<script type="text/javascript">
+  var feed = new Instafeed({
+     limit: '10',
+     sortBy: 'most-liked',
+     resolution: 'standard_resolution',
+     clientId: '467ede5a6b9b48ae8e03f4e2582aeeb3', 
+     template:'<div class="tile"><div class="text"><b>{{likes}} &hearts; </b>{{model.user.full_name}}</div><img class="item" src="{{image}}"></div>'
+  });
+</script>
+///////////////////
+
+///////////////////////

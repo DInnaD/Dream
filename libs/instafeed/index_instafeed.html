@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+         <script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous">
+    </script>
+        
+        <!--styli dla widgeta  id dla javascript-->
+        <style type="text/css">
+   
+            body, html, body * {
+                margin: 0;
+                padding: 0;
+            }
+            .wbd-widget, wbd-widget * {
+                box-sizing: border-box;
+                font-family: Ubuntu;
+	}
+            .wbd-widget{
+                border: solid 1px #333;
+                padding: 20px;
+                color: black;
+            }    
+            .wbd-widget_info{
+                font-size: 16px;
+                color: black;
+                text-align: center;
+		}
+            .weather-wisget_form-label{
+                display: block;
+                line-height: 30px;
+            }
+        </style>   
+   
+    </head>
+    <body>
+    <!--html razmetkadlawidg-->
+        <div class="wbd-widget">
+            <div class="wbd-widget_info">
+                
+            <!--span id=""</span-->
+		    <div id="instafeed"></div><!--/div-->
+    <div class="flex-parent">
+        <div class="flex-child">
+
+            <div id="city">
+                New York
+            </div>       
+
+            <div id="temp_c" class="temperature">
+                +25 <a id="temp_unit_c">C</a>
+            </div>      
+            <div id="temp_f" class="temperature">
+                0 <a id="temp_unit_f">F</a>
+            </div>                         
+
+            <img id="icon" src="images/icons/black/sunny.svg" />
+
+            <div id="weather">
+                Sunny
+            </div> 
+            </div>
+
+            
+            <!--label class="wbd-widget_form-label">
+                Your   city
+                <select id="wbd-widget-city" class="wbd-widget_form-select">
+                    <option value="37" selected="">Kyiv</option>
+                    <option value="69" selected="">Poltava</option>
+                </select>
+            </label-->
+            <label class="wbd-widget_form-label">
+            <!--input type="submit" id="wbd-widget-update" class="wbd-widget_form-submit" value="update"-->
+            </label>
+        </div>   
+         <script type="text/javascript" charset="UTF-8">
+          <script type="text/javascript" src="instafeed.min.js"></script>    
+   <script type="text/javascript">
+
+              $(function () {
+  
+// https://api.wunderground.com/api/7f0451b8da14a202/conditions/forecast/q/49.5638034,34.4923746.json
+
+  var coordinates = '';
+  var url;
+  
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      coordinates+=position.coords.latitude + ',' + position.coords.longitude;
+      
+      url = 'https://api.wunderground.com/api/7f0451b8da14a202/conditions/forecast/q/' + coordinates + '.json'     
+      
+      // send request to the weather server
+      $.ajax( {
+        url: url,
+        success: function(data) {
+
+          var temperature_c = data.current_observation.temp_c + " <a id='temp_unit_c'>C</a>"
+          $("#temp_c").html(temperature_c);
+
+          $("#temp_unit_c").on('click', function(){
+            $("#temp_c").toggle();
+            $("#temp_f").toggle();
+          });
+
+          var temperature_f = data.current_observation.temp_f + " <a id='temp_unit_f'>F</a>"
+          $("#temp_f").html(temperature_f);
+//on naznachenie 1 i bolshe callback dlya odnogo i togoge sobytia sobytiy
+          $("#temp_unit_f").on('click', function(){
+            $("#temp_c").toggle();
+            $("#temp_f").toggle();
+          });          
+
+          $("#city").html(data.current_observation.observation_location.city);          
+
+          var iconSrc = "images/icons/black/" + data.current_observation.icon +".svg" ;
+          $( "#icon" ).attr( "src", iconSrc );
+
+          $("#weather").html(data.current_observation.weather); 
+          
+                 
+            
+        var userFeed = new Instafeed({
+get: 'user',
+userId: '2321088784',
+accessToken: '2321088784.1677ed0.bde13057fffd4b30aad200715ee85b61',
+    template: '<a href="{{link}}"><img src="{{image}}" /></a>',
+     limit: 60,
+//tags: temp_c,            
+            
+    //data: {access_token: tok, count: kolichestvo},//+++++++++++
+    success: function() {
+        foundImages = 0;
+        maxImages = 5;
+    },
+    filter: function(image) {
+        
+         //return image.tags.indexOf('TAG1') >= 0 && image.tags.indexOf('TAG2') >= 0;
+     //return image.tags.indexOf('25') >= 0;
+        
+       // str.indexOf(searchValue[, fromIndex])
+        //var image.tags = ['25'];
+        //var temperature_c1 = data.current_observation.temp_c1;+++++++++
+        //==data.current_observation.temp_c1+++++++++++++++++++++
+     if (image.tags.indexOf(temp_c) >= 0 && foundImages < maxImages) {//++++
+            foundImages = foundImages + 1;
+            return true;
+        }
+    else if(image.tags.indexOf('23') >= 0 && foundImages < maxImages) {
+            foundImages = foundImages + 1;
+            return true;
+        }
+    else if(image.tags.indexOf('27') >= 0 && foundImages < maxImages) {
+            foundImages = foundImages + 1;
+            return true;
+        }    
+        return false;
+  }    
+
+}); 
+userFeed.run(); 
+
+        },
+        cache: false
+      });       
+      
+    });
+  }    
+
+});
+</script>
+   
+    </body>  
+</html>
