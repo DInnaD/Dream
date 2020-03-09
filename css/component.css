@@ -154,7 +154,8 @@
 	font-size: 2.5em;
 	line-height: 1;
 	position: absolute;
-	top: 50%;
+    	top: 150%;
+	/*top: 50%;***********************************************************************************************/
 	overflow: hidden;
 	width: 2em;
 	height: 2em;
@@ -537,7 +538,8 @@
 .button-color {
 	font-size: 0.9em;
 	position: absolute;
-	top: 50%;
+    	top: 87%;
+	/*top: 50%;****************************************************************************************************/
 	right: 0;
 	display: block;
 	overflow: hidden;
@@ -688,6 +690,7 @@
 
 @media screen and (max-width: 49.125em) {
 	.slider__nav {
+    		top: 150px;/************************************************************************************/
 		color: #fff;
 		border-radius: 50%;
 		background: rgba(255,255,255,.1);
