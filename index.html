@@ -431,17 +431,28 @@ download_img = function(el) {
 	</div>
   </section>  
   <script>
-		   
-
 var galleryFeed = new Instafeed({
   get: "user",
   userId: 6715816580,
   accessToken: "6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450",
   resolution: "standard_resolution",
   useHttp: "true",
-  limit: 6,
+  limit: 3,
   template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes"><i class="icon ion-heart"></i> {{likes}}</span><span class="comments"><i class="icon ion-chatbubble"></i> {{comments}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
   target: "instafeed-gallery-feed",
+  success: function() {
+        foundImages = 0;
+        maxImages = 30;
+    },
+          //window.setTimeout(function() {
+  filter: function(image) {
+
+      console.log(image);
+      if(image.tags.indexOf('i') >= 0 && foundImages < maxImages) {
+            foundImages = foundImages + 1;
+            return true;
+         }
+  },	  
   after: function() {
     // disable button if no more results to load
     if (!this.hasNext()) {
@@ -490,6 +501,55 @@ btnInstafeedLoad.addEventListener("click", function() {
 					навчається новому, готувати смачненьке, класти речі на місце та тримати їх охайними,
 					зволожувати, провітрювати і прикрашати кімнату під Кольори Настрою її Мрії?</span></h1>
 			</header>
+  <section class="intro">
+       <div class="intro-body">
+            <div class="container">
+                 <div class="row">                    
+                    <div class="column column-1">  
+                	<div id="instafeed-gallery-feed" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load" class="btn">Load more</button>  
+                    </div>
+                </div>
+	     </div>
+	</div>
+  </section>  
+  <script>
+var galleryFeed1 = new Instafeed({
+  get: "user",
+  userId: 6715816580,
+  accessToken: "6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450",
+  resolution: "standard_resolution",
+  useHttp: "true",
+  limit: 3,
+  template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes"><i class="icon ion-heart"></i> {{likes}}</span><span class="comments"><i class="icon ion-chatbubble"></i> {{comments}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
+  target: "instafeed-gallery-feed",
+  success: function() {
+        foundImages = 0;
+        maxImages = 30;
+    },
+          //window.setTimeout(function() {
+  filter: function(image) {
+
+      console.log(image);
+      if(image.tags.indexOf('c') >= 0 && foundImages < maxImages) {
+            foundImages = foundImages + 1;
+            return true;
+         }
+  },	  
+  after: function() {
+    // disable button if no more results to load
+    if (!this.hasNext()) {
+      btnInstafeedLoad1.setAttribute('disabled', 'disabled');
+    }
+  },
+});
+galleryFeed1.run();
+
+var btnInstafeedLoad = document.getElementById("btn-instafeed-load1");
+btnInstafeedLoad1.addEventListener("click", function() {
+  galleryFeed1.next()
+});
+ </script>
 			<header class="codrops-header">
 				<h1><span>Про Час та Природу Від Грети!!!</span></h1>
 				<div class="codrops-links">
