@@ -266,6 +266,55 @@ download_img = function(el) {
 				<h1><span>Все Розфарбовуй з Гретою!</span></h1>
 				<h1>Як Грета Одягається? <span>Вона підбирає одяг по погоді під Кольори Настрою її Мрії?</span></h1>
 			</header>
+  <section class="intro">
+       <div class="intro-body">
+            <div class="container">
+                 <div class="row">                    
+                    <div class="column column-1">  
+                	<div id="instafeed-gallery-feed3" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load3" class="btn">Load more</button>  
+                    </div>
+                </div>
+	     </div>
+	</div>
+  </section>  
+  <script>
+var galleryFeed3 = new Instafeed({
+  get: "user",
+  userId: 6715816580,
+  accessToken: "6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450",
+  resolution: "standard_resolution",
+  useHttp: "true",
+  limit: 3,
+  template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes">&hearts;{{likes}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
+  target: "instafeed-gallery-feed3",
+  success: function() {
+        foundImages = 0;
+        maxImages = 30;
+    },
+          //window.setTimeout(function() {
+  filter: function(image) {
+
+      console.log(image);
+      if(image.tags.indexOf('') >= 0 && foundImages < maxImages) {
+            foundImages = foundImages + 1;
+            return true;
+         }
+  },	  
+  after: function() {
+    // disable button if no more results to load
+    if (!this.hasNext()) {
+      btnInstafeedLoad3.setAttribute('disabled', 'disabled');
+    }
+  },
+});
+galleryFeed3.run();
+
+var btnInstafeedLoad3 = document.getElementById("btn-instafeed-load3");
+btnInstafeedLoad3.addEventListener("click", function() {
+  galleryFeed3.next()
+});
+ </script>
 			<div class="container1">
 			<header class="codrops-header">
 				<h1><span>Віршики Від Грети!</span></h1>
@@ -305,12 +354,61 @@ download_img = function(el) {
 			</div>		
 			</header>
 			</div><!--container1-->			
-			<!--e--><header class="codrops-header">
+			<!--f--><header class="codrops-header">
 				<h1><span>Тут все про Комфорт і Чудовий Настрій!</span></h1>					
 				<h1><span>Все Розфарбовуй з Гретою!</span></h1>
 				<h1>Що Грета Їсть? <span>Вона &hearts; все свіже, що росте на городі, 
 					на деревах чи варене або солене в харчовому ланцюжці хижаків під Кольори Настрою її Мрії?</span></h1>
 			</header>
+  <section class="intro">
+       <div class="intro-body">
+            <div class="container">
+                 <div class="row">                    
+                    <div class="column column-1">  
+                	<div id="instafeed-gallery-feed2" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load2" class="btn">Load more</button>  
+                    </div>
+                </div>
+	     </div>
+	</div>
+  </section>  
+  <script>
+var galleryFeed2 = new Instafeed({
+  get: "user",
+  userId: 6715816580,
+  accessToken: "6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450",
+  resolution: "standard_resolution",
+  useHttp: "true",
+  limit: 3,
+  template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes">&hearts;{{likes}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
+  target: "instafeed-gallery-feed2",
+  success: function() {
+        foundImages = 0;
+        maxImages = 30;
+    },
+          //window.setTimeout(function() {
+  filter: function(image) {
+
+      console.log(image);
+      if(image.tags.indexOf('f') >= 0 && foundImages < maxImages) {
+            foundImages = foundImages + 1;
+            return true;
+         }
+  },	  
+  after: function() {
+    // disable button if no more results to load
+    if (!this.hasNext()) {
+      btnInstafeedLoad2.setAttribute('disabled', 'disabled');
+    }
+  },
+});
+galleryFeed2.run();
+
+var btnInstafeedLoad2 = document.getElementById("btn-instafeed-load2");
+btnInstafeedLoad2.addEventListener("click", function() {
+  galleryFeed2.next()
+});
+ </script>
 			<header class="codrops-header">			
 				<h1><span>Казка Від Грети!!</span></h1>
 				<div class="codrops-links">
@@ -540,7 +638,7 @@ btnInstafeedLoad.addEventListener("click", function() {
 					<h3 class="media-item__title">Розмалюй Мрії, Грето! </h3>
 				</a>
 			</section>					
-			<!--c--><header class="codrops-header">
+			<!--w--><header class="codrops-header">
 				<h1><span>Про Кожен День і Чудовий Настрій</span></h1>					
 				<h1><span>Все Розфарбовуй з Гретою!</span></h1>
 				<h1>Що Грета Робить? <span>Вона &hearts; все допомагати матусі й татусю,
@@ -577,7 +675,7 @@ var galleryFeed1 = new Instafeed({
   filter: function(image) {
 
       console.log(image);
-      if(image.tags.indexOf('r') >= 0 && foundImages < maxImages) {
+      if(image.tags.indexOf('w') >= 0 && foundImages < maxImages) {
             foundImages = foundImages + 1;
             return true;
          }
@@ -1019,6 +1117,55 @@ footer{
 				<h1>Як Грета Відпочиває? <span>Вона &hearts; все бачити через призму свого світогляду,
 					 але не чужого, прикрашаючи своє життя Кольорами Настрою її Мрії?</span></h1>
 			</header>
+  <section class="intro">
+       <div class="intro-body">
+            <div class="container">
+                 <div class="row">                    
+                    <div class="column column-1">  
+                	<div id="instafeed-gallery-feed4" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load4" class="btn">Load more</button>  
+                    </div>
+                </div>
+	     </div>
+	</div>
+  </section>  
+  <script>
+var galleryFeed4 = new Instafeed({
+  get: "user",
+  userId: 6715816580,
+  accessToken: "6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450",
+  resolution: "standard_resolution",
+  useHttp: "true",
+  limit: 3,
+  template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes">&hearts;{{likes}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
+  target: "instafeed-gallery-feed4",
+  success: function() {
+        foundImages = 0;
+        maxImages = 30;
+    },
+          //window.setTimeout(function() {
+  filter: function(image) {
+
+      console.log(image);
+      if(image.tags.indexOf('r') >= 0 && foundImages < maxImages) {
+            foundImages = foundImages + 1;
+            return true;
+         }
+  },	  
+  after: function() {
+    // disable button if no more results to load
+    if (!this.hasNext()) {
+      btnInstafeedLoad4.setAttribute('disabled', 'disabled');
+    }
+  },
+});
+galleryFeed4.run();
+
+var btnInstafeedLoad4 = document.getElementById("btn-instafeed-load4");
+btnInstafeedLoad4.addEventListener("click", function() {
+  galleryFeed4.next()
+});
+ </script>
 			<header class="codrops-header">						
 				<h1><span>Тут все Розфарбовано Гретою!</span></h1>		
 				<h1><span>Грета - Особиста Палітра Емоцій Зараз</span></h1>
