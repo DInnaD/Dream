@@ -568,7 +568,7 @@ var galleryFeed1 = new Instafeed({
   useHttp: "true",
   limit: 3,
   template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes">&hearts;{{likes}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
-  target: "instafeed-gallery-feed",
+  target: "instafeed-gallery-feed1",
   success: function() {
         foundImages = 0;
         maxImages = 30;
@@ -577,7 +577,7 @@ var galleryFeed1 = new Instafeed({
   filter: function(image) {
 
       console.log(image);
-      if(image.tags.indexOf('c') >= 0 && foundImages < maxImages) {
+      if(image.tags.indexOf('r') >= 0 && foundImages < maxImages) {
             foundImages = foundImages + 1;
             return true;
          }
