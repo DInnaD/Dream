@@ -794,7 +794,7 @@ btnInstafeedLoad3.addEventListener("click", function() {
             <div class="container">
                  <div class="row">                    
                     <div class="column column-1">  
-                	<div id="instafeed-gallery-feed3" class="gallery row no-gutter"></div>
+                	<div id="userFeed3" class="gallery row no-gutter"></div>
 			<button id="btn-instafeed-load3" class="btn">Load more</button>  
                     </div>
                 </div>
@@ -832,7 +832,7 @@ btnInstafeedLoad3.addEventListener("click", function() {
     },
 	      template: '<a href="{{link}}" target="_blank"><img src="{{image}}" /><div class="likes">&hearts; {{likes}}</div></a>',
   after: function () {
-    var images = $("#instafeed").find('a');
+    var images = $("#userFeed3").find('a');
     $.each(images, function(index, image) {
 	    console.log(index);
 	    console.log(image);
