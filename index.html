@@ -286,6 +286,7 @@ download_img = function(el) {
     success: function(data) {
       var temp = Math.round(data.currently.temperature) + "°C";
       var c = Math.round(data.currently.temperature);
+      var f = Math.round(data.currently.temperature) * 9 / 5 + 32;
       var galleryFeed0 = new Instafeed({
 get: 'user',
 userId: '6715816580',/*'6909994807',*/
