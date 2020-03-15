@@ -971,7 +971,7 @@ $(document).ready(function() {
      location.callGeocodeAPI();
      map.updateMap();
      weather.callDarkSkyAPI();
-     weather.galleryFeed4.callInstaAPI();//getWeatherInfo
+     //weather.galleryFeed4.callInstaAPI();//getWeatherInfo
   };
    
   //
@@ -981,7 +981,7 @@ $(document).ready(function() {
      location.callGeocodeAPI();
      map.initMap();
      weather.callDarkSkyAPI();
-     weather.galleryFeed4.callInstaAPI();//getWeatherInfo
+     //weather.galleryFeed4.callInstaAPI();//getWeatherInfo
      addEventHandlers();
      centerBorder()
   };
