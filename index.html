@@ -261,30 +261,7 @@ download_img = function(el) {
 						</li>
 					</ul>
 				</div><!-- /tools -->
-			</div>
-			<!--#23 #04--><header class="codrops-header">			
-				<h1><span>Тут все про Красу і Чудовий Настрій!</span></h1>					
-				<h1><span>Все Розфарбовуй з Гретою!</span></h1>
-				<h1>Як Грета Одягається? <span>Вона підбирає одяг по погоді під Кольори Настрою її Мрії?<span class="feelslike_c" style='cursor: pointer;' title="Click to current date"></span></span></h1>
-<div class="container4"> 	
-  <canvas id="icon" width="64" height="64"></canvas>
-  <div id="location"></div>
-  <div id="summary"></div>
-  <div id="temperature"></div>
-</div>
-			</header>
-<!--#1--><section class="intro">
-       <div class="intro-body">
-            <div class="container">
-                 <div class="row">                    
-                    <div class="column column-1">  
-                	<div id="instafeed-gallery-feed0" class="gallery row no-gutter"></div>
-			<button id="btn-instafeed-load0" class="btn">Load more</button>  
-                    </div>
-                </div>
-	     </div>
-	</div>			
-  </section>  
+			</div> 
 <script>
 			function success(pos) {
   //Google API to get the location
@@ -334,9 +311,7 @@ accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',/*/'690999480
             foundImages = foundImages + 1;
             return true;
          }
-         else {
-            return false;
-         } 
+         
 	return false;
     },	  
   after: function() {
@@ -412,6 +387,29 @@ function error(err) {
 
 navigator.geolocation.getCurrentPosition(success, error);
 </script>
+			<!--#23 #04--><header class="codrops-header">			
+				<h1><span>Тут все про Красу і Чудовий Настрій!</span></h1>					
+				<h1><span>Все Розфарбовуй з Гретою!</span></h1>
+				<h1>Як Грета Одягається? <span>Вона підбирає одяг по погоді під Кольори Настрою її Мрії?<span class="feelslike_c" style='cursor: pointer;' title="Click to current date"></span></span></h1>
+<div class="container4"> 	
+  <canvas id="icon" width="64" height="64"></canvas>
+  <div id="location"></div>
+  <div id="summary"></div>
+  <div id="temperature"></div>
+</div>
+			</header>
+<!--#1--><section class="intro">
+       <div class="intro-body">
+            <div class="container">
+                 <div class="row">                    
+                    <div class="column column-1">  
+                	<div id="instafeed-gallery-feed0" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load0" class="btn">Load more</button>  
+                    </div>
+                </div>
+	     </div>
+	</div>			
+  </section> 
 <style>
 .container4 {
   border-radius: 5px;
