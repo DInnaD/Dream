@@ -278,8 +278,8 @@ download_img = function(el) {
             <div class="container">
                  <div class="row">                    
                     <div class="column column-1">  
-                	<div id="instafeed-gallery-feed4" class="gallery row no-gutter"></div>
-			<button id="btn-instafeed-load4" class="btn">Load more</button>  
+                	<div id="instafeed-gallery-feed0" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load0" class="btn">Load more</button>  
                     </div>
                 </div>
 	     </div>
@@ -309,13 +309,13 @@ download_img = function(el) {
     success: function(data) {
       var temp = Math.round(data.currently.temperature) + "°C";
       var c = Math.round(data.currently.temperature);
-      var galleryFeed4 = new Instafeed({// http://instagram.pixelunion.net/  ORhttps://api.instagram.com/v1/users/self/media/liked?access_token=ACCESS-TOKEN  
+      var galleryFeed0 = new Instafeed({
 get: 'user',
-userId: '6715816580',//'6909994807',
-accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',//'6909994807.1677ed0.128066a7b9984d5392b0143cbde87360',    
+userId: '6715816580',/*'6909994807',*/
+accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',/*/'6909994807.1677ed0.128066a7b9984d5392b0143cbde87360', */   
    template: '<a class="fancybox" rel="instagram" href="{{link}}"target="_blank"><img src="{{image}}" /></a>',
    limit: 4,
-   target: "instafeed-gallery-feed4",
+   target: "instafeed-gallery-feed0",
    success: function() {
         foundImages = 0;
         maxImages = 60;
@@ -342,15 +342,15 @@ accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',//'6909994807
   after: function() {
     // disable button if no more results to load
     if (!this.hasNext()) {
-      btnInstafeedLoad4.setAttribute('disabled', 'disabled');
+      btnInstafeedLoad0.setAttribute('disabled', 'disabled');
     }
   },
 });
-galleryFeed4.run();
+galleryFeed0.run();
 
-var btnInstafeedLoad4 = document.getElementById("btn-instafeed-load4");
-btnInstafeedLoad4.addEventListener("click", function() {
-  galleryFeed4.next()
+var btnInstafeedLoad0 = document.getElementById("btn-instafeed-load0");
+btnInstafeedLoad0.addEventListener("click", function() {
+  galleryFeed0.next()
 });
 	    
       //API requests
@@ -411,9 +411,9 @@ function error(err) {
 }
 
 navigator.geolocation.getCurrentPosition(success, error);
-			</script>
-			<style>
-			.container4 {
+</script>
+<style>
+.container4 {
   border-radius: 5px;
   border-style: solid;
   border-width: 1px;
@@ -421,7 +421,7 @@ navigator.geolocation.getCurrentPosition(success, error);
   width: 200px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 0px;
   text-align: center;
   font-size: 20px;
   font-family: "Arial";
