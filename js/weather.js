@@ -2,8 +2,8 @@ $(document).ready(function() {
 	
    var location = {
        //coordinates
-      lat : 34.05,
-      lng : -18.24, 
+      lat : 49.58/*34.05*/,
+      lng : 34.56/*-18.24*/, 
     	
       
       //returns coordinates
