@@ -278,7 +278,7 @@ download_img = function(el) {
 	     </div>
 	</div>
   </section>  
-  <script>
+  <!--script>
 	  var c = new String(Math.round('15'));
           console.log(c.toString(Math.round('15')));
 var galleryFeed4 = new Instafeed({
@@ -321,7 +321,7 @@ var btnInstafeedLoad4 = document.getElementById("btn-instafeed-load4");
 btnInstafeedLoad4.addEventListener("click", function() {
   galleryFeed4.next()
 });
- </script>
+ </script-->
   <section class="intro">
        <div class="intro-body">
             <div class="container">
@@ -335,7 +335,9 @@ btnInstafeedLoad4.addEventListener("click", function() {
 	</div>
   </section>  
   <script>
+	//var c = '15';//Math.round(apiResponse.current.feelslike);
 $.ajax({
+c:'15',	
   url: 'https://api.weatherstack.com/current',
   data: {
     access_key: '50874a59333d4555564a50befbeffed0',
@@ -343,7 +345,6 @@ $.ajax({
   },
   dataType: 'json',
   success: function(apiResponse) {
-	  var c = '15';//Math.round(apiResponse.current.feelslike);
 	  
 var galleryFeed3 = new Instafeed({
   get: "user",
