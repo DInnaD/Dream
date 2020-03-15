@@ -1,22 +1,9 @@
 $(document).ready(function() {
-//     $.ajax({
-//     async: true,
-//     crossDomain: true,
-//     url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCx713Z6MzLSQe5QSC2mtrRE0XIxb1LRns",
-//     dataType: 'json',
-//     method: "POST",//POST
-//     success: function(response) {
-// 			console.log(response); 
+	
    var location = {
-       
-   
-		
-//       //coordinates
+       //coordinates
       lat : 34.05,
-      lng : -18.24,  
-//       lat : "",
-//       lng : "",  
-       // send ajax request to fetch location data
+      lng : -18.24, 
     	
       
       //returns coordinates
@@ -95,10 +82,7 @@ $(document).ready(function() {
       }
 
    };
-//       },
-//     }).fail(function() {
-//       $('.border').append('<p>Error: Could not load weather data!</p>');
-//     });
+
    //object literal containing methods for initializing and updating the map
    var map = {
       
@@ -938,11 +922,7 @@ $(document).ready(function() {
    },
    
   };
-  
-   var feed = {//getJSON request to google geocode API to reverse geocode lat and lng coords -> called by update function
-      
-         
-   },
+
   //display content in shape of mobile device and center in view
    function centerBorder(){
       var width = parseInt($("body").width());
@@ -971,7 +951,6 @@ $(document).ready(function() {
      location.callGeocodeAPI();
      map.updateMap();
      weather.callDarkSkyAPI();
-     //weather.galleryFeed4.callInstaAPI();//getWeatherInfo
   };
    
   //
@@ -981,7 +960,6 @@ $(document).ready(function() {
      location.callGeocodeAPI();
      map.initMap();
      weather.callDarkSkyAPI();
-     //weather.galleryFeed4.callInstaAPI();//getWeatherInfo
      addEventHandlers();
      centerBorder()
   };
