@@ -266,7 +266,62 @@ download_img = function(el) {
 				<h1><span>Тут все про Красу і Чудовий Настрій!</span></h1>					
 				<h1><span>Все Розфарбовуй з Гретою!</span></h1>
 				<h1>Як Грета Одягається? <span>Вона підбирає одяг по погоді під Кольори Настрою її Мрії?<span class="feelslike_c" style='cursor: pointer;' title="Click to current date"></span></span></h1>
-			</header>
+			</header><!--f--><section class="intro">
+       <div class="intro-body">
+            <div class="container">
+                 <div class="row">                    
+                    <div class="column column-1">  
+                	<div id="instafeed-gallery-feed4" class="gallery row no-gutter"></div>
+			<button id="btn-instafeed-load4" class="btn">Load more</button>  
+                    </div>
+                </div>
+	     </div>
+	</div>
+  </section>  
+  <script>
+	  var c = new String(Math.round('15'));
+          console.log(c.toString(Math.round('15')));
+var galleryFeed4 = new Instafeed({
+  get: "user",
+  userId: 6715816580,
+  accessToken: "6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450",
+  resolution: "standard_resolution",
+  useHttp: "true",
+  limit: 3,
+  template: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="{{image}}"><div class="img-featured-container"><div class="img-backdrop"></div><div class="description-container"><p class="caption">{{caption}}</p><span class="likes">&hearts;{{likes}}</span></div><img src="{{image}}" class="img-responsive"></div></a></div>',
+  target: "instafeed-gallery-feed4",
+  success: function() {
+        foundImages = 0;
+        maxImages = 60;
+    },
+          //window.setTimeout(function() {
+  filter: function(image) {
+console.log(image);
+      if(( c == '15') && (image.tags.indexOf('15') >= 0 && foundImages < maxImages)) {
+            foundImages = foundImages + 1;
+            return true;
+         }
+//       console.log(image);
+//       if(image.tags.indexOf('15') >= 0 && foundImages < maxImages) {
+//             foundImages = foundImages + 1;
+//             return true;
+//          }
+	  return false;
+  },	  
+  after: function() {
+    // disable button if no more results to load
+    if (!this.hasNext()) {
+      btnInstafeedLoad4.setAttribute('disabled', 'disabled');
+    }
+  },
+});
+galleryFeed4.run();
+
+var btnInstafeedLoad4 = document.getElementById("btn-instafeed-load4");
+btnInstafeedLoad4.addEventListener("click", function() {
+  galleryFeed4.next()
+});
+ </script>
   <section class="intro">
        <div class="intro-body">
             <div class="container">
@@ -288,7 +343,7 @@ $.ajax({
   },
   dataType: 'json',
   success: function(apiResponse) {
-	  var c = 15;//Math.round(apiResponse.current.feelslike);
+	  var c = '15';//Math.round(apiResponse.current.feelslike);
 	  
 var galleryFeed3 = new Instafeed({
   get: "user",
@@ -839,7 +894,7 @@ btnInstafeedLoad3.addEventListener("click", function() {
 				<h1>Що Грета Їсть? <span>Вона &hearts; все свіже, що росте на городі, 
 					на деревах чи варене або солене в харчовому ланцюжці хижаків під Кольори Настрою її Мрії?</span></h1>
 			</header>
-  <section class="intro">
+  <!--f--><section class="intro">
        <div class="intro-body">
             <div class="container">
                  <div class="row">                    
