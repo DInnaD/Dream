@@ -266,7 +266,14 @@ download_img = function(el) {
 				<h1><span>Тут все про Красу і Чудовий Настрій!</span></h1>					
 				<h1><span>Все Розфарбовуй з Гретою!</span></h1>
 				<h1>Як Грета Одягається? <span>Вона підбирає одяг по погоді під Кольори Настрою її Мрії?<span class="feelslike_c" style='cursor: pointer;' title="Click to current date"></span></span></h1>
-			</header><!--f--><section class="intro">
+<div class="container4"> 	
+  <canvas id="icon" width="128" height="128"></canvas>
+  <div id="location"></div>
+  <div id="summary"></div>
+  <div id="temperature"></div>
+</div>
+			</header>
+<!--#1--><section class="intro">
        <div class="intro-body">
             <div class="container">
                  <div class="row">                    
@@ -276,13 +283,7 @@ download_img = function(el) {
                     </div>
                 </div>
 	     </div>
-	</div>
-			<div class="container4"> 	
-  <canvas id="icon" width="128" height="128"></canvas>
-  <div id="location"></div>
-  <div id="summary"></div>
-  <div id="temperature"></div>
-</div>
+	</div>			
   </section>  
 <script>
 			function success(pos) {
@@ -313,11 +314,11 @@ get: 'user',
 userId: '6715816580',//'6909994807',
 accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',//'6909994807.1677ed0.128066a7b9984d5392b0143cbde87360',    
    template: '<a class="fancybox" rel="instagram" href="{{link}}"target="_blank"><img src="{{image}}" /></a>',
-   limit: 1000,
+   limit: 3,
    target: "instafeed-gallery-feed4",
    success: function() {
         foundImages = 0;
-        maxImages = 30;
+        maxImages = 60;
     },
           
     filter: function(image) {
@@ -333,14 +334,25 @@ accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',//'6909994807
             foundImages = foundImages + 1;
             return true;
          }
-         else if(( c == '15') && (image.tags.indexOf('15') >= 0 && foundImages < maxImages)) {
+         else if(( c == '1') && (image.tags.indexOf('22') >= 0 && foundImages < maxImages)) {
             foundImages = foundImages + 1;
             return true;
          } 
-	    return false;
-    },	 
-      });
-	    galleryFeed4.run();
+	return false;
+    },	  
+  after: function() {
+    // disable button if no more results to load
+    if (!this.hasNext()) {
+      btnInstafeedLoad4.setAttribute('disabled', 'disabled');
+    }
+  },
+});
+galleryFeed4.run();
+
+var btnInstafeedLoad4 = document.getElementById("btn-instafeed-load4");
+btnInstafeedLoad4.addEventListener("click", function() {
+  galleryFeed4.next()
+});
 	    
       //API requests
       $("#temperature").append(temp);
