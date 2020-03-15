@@ -12,8 +12,8 @@ $(document).ready(function() {
    
 		
 //       //coordinates
-      lat : 49.58,
-      lng : 34.56,  
+      lat : 34.05,
+      lng : -18.24,  
 //       lat : "",
 //       lng : "",  
        // send ajax request to fetch location data
