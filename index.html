@@ -10,6 +10,14 @@
 		<meta name="keywords" content="color palette, effect, animation, vibrant.js, extract color, image, web design" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="favicon.ico">
+		<!--alexToDo-->
+		  <!--link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Exo+2:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic,cyrillic-ext"
+    rel="stylesheet"-->
+  <link rel="stylesheet" href="css/style.css">
+		<!--material bootstrap-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -1080,12 +1088,1293 @@ btnInstafeedLoad2.addEventListener("click", function() {
 					
 					<a class="codrops-icon codrops-icon--drop" href="https://dinnad.github.io/Dream2" title="Наступна Грандіозна Виставка Мрії!"><span>Наступна Виставка Мрії</span></a>
 				</div>
-			<header>					
+			<header>
+				
 				<div class="text">
 				<!--link na ZMIST KNYGARNU I CROWFUNDING PLATFORMU AUTO abo na prynter-->
 					<h1><span>Хочеш створити власну казку? <a id="download3" download3="pic/1.jpg" href="" onclick="download_img(this);" class="a">
 Скачати, роздрукувати та подарувати близькм Кольорові Книжки чи Листівки Своєї Мрії.jpg</a></span></h1>
 			</div>
+				<!--alexToDo-->
+				<script>
+				
+//Добавляю пустой объект
+const tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : {};
+localStorage.setItem('tasks', JSON.stringify(tasks));
+const objectTasks = JSON.parse(localStorage.getItem('tasks'));
+
+const textForm = document.querySelector(".text-form");
+const addTaskButton = document.querySelector(".add-task");
+const ulList = document.querySelector(".task-list");
+const searchInput = document.querySelector(".search-input");
+const fragment = document.createDocumentFragment();
+const impValue = document.querySelector(".important-value");
+const impNumUp = document.querySelector(".important-up");
+const impNumDown = document.querySelector(".important-down");
+const btnSortText = document.querySelector(".sort-btn_text");
+const importantForm = document.querySelector(".important-container");
+const form = document.querySelector(".form");
+const btnSortCompl = document.querySelector(".sort-btn_completed");
+const sortImportantBtn = document.querySelector(".sort-btn_important");
+const sortBtnDate = document.querySelector(".sort-btn_date");
+
+
+
+function pushChangeLocalStor(objectTasks){
+  const taskObj = JSON.stringify(objectTasks);
+  localStorage.setItem('tasks', taskObj);
+}
+
+//Функция добавления задач
+function renderTask(objectTasks) {
+  Object.values(objectTasks).reverse().forEach(task => {
+    const li = createTask(task);
+    fragment.appendChild(li);
+    ulList.appendChild(fragment);
+  });
+}
+renderTask(objectTasks);
+
+
+
+
+  //Нажатие на кнопку addTask
+  addTaskButton.addEventListener("click", ev => {
+    evClickTaskData();
+    ev.preventDefault();
+  });
+  //Нажатие на клавишу Enter
+  const addForm = document.querySelector(".form");
+  addForm.addEventListener("keydown", ev => {
+    if (ev.keyCode !== 13) return;
+    ev.preventDefault();
+    evClickTaskData();
+  });
+
+
+function evClickTaskData() {
+  const formText = textForm.value;
+  if (!formText) return modalAlert("Enter your text!!!");
+  const task = addTaskData(formText, objectTasks);
+  const li = createTask(task);
+  
+  ulList.insertAdjacentElement("afterbegin", li);
+  importantForm.reset();
+  form.reset();
+}
+
+
+//Конструктор задачи
+function addTaskData(formText, objectTasks ) {
+  
+  const nowDate = Date.now();
+  const newTask = {
+    id: `task-${Date.now() * 100}`,
+    completed: false,
+    text: formText,
+    date: nowDate,
+    important: impValue.value
+  };
+  objectTasks[newTask.id] = newTask;
+  pushChangeLocalStor(objectTasks);
+  return newTask;
+}
+
+//Форма по важности
+  impNumUp.addEventListener("click", ev => {
+    ev.preventDefault();
+    if (impValue.value < 5) impValue.value++;
+  });
+  impNumDown.addEventListener("click", ev => {
+    ev.preventDefault();
+    if (impValue.value > 0) impValue.value--;
+  });
+
+
+function deleteTag(tags) {
+  if (!tags) return;
+  tags.forEach(tag => tag.remove());
+}
+
+//Сортировка текста  
+btnSortText.setAttribute("data-flag", "true");
+
+btnSortText.addEventListener("click", () => {
+  const allLi = document.querySelectorAll(".task");
+  deleteTag(allLi);
+  if (btnSortText.dataset.flag === "true") {
+    btnSortText.dataset.flag = "false";
+    sortText("min");
+  } else if (btnSortText.dataset.flag === "false") {
+    btnSortText.dataset.flag = "true";
+    sortText("max");
+  }
+});
+
+function sortText(value) {
+  if (value === "min") {
+    const sortMin = Object.values(objectTasks).sort((prev, next) => {
+      return prev.text < next.text ? 1 : prev.text > next.text ? -1 : 0;
+    });
+    renderTask(sortMin);
+  } else if (value === "max") {
+    const sortMax = Object.values(objectTasks).sort((prev, next) => {
+      return prev.text > next.text ? 1 : prev.text < next.text ? -1 : 0;
+    });
+    renderTask(sortMax);
+  }
+}
+
+//Сортировка по выполнености
+
+btnSortCompl.setAttribute("data-flag", "true");
+
+btnSortCompl.addEventListener("click", () => {
+  const allLi = document.querySelectorAll(".task");
+  deleteTag(allLi);
+  if (btnSortCompl.dataset.flag === "true") {
+    btnSortCompl.dataset.flag = "false";
+    sortNum("min", "completed");
+  } else if (btnSortCompl.dataset.flag === "false") {
+    btnSortCompl.dataset.flag = "true";
+    sortNum("max", "completed");
+  }
+});
+
+//Сортировка по важности
+
+sortImportantBtn.setAttribute("data-flag", "true");
+
+sortImportantBtn.addEventListener("click", ev => {
+  const allLi = document.querySelectorAll(".task");
+  ev.preventDefault();
+  deleteTag(allLi);
+  if (sortImportantBtn.dataset.flag === "true") {
+    sortImportantBtn.dataset.flag = "false";
+    sortNum("min", "important");
+  } else if (sortImportantBtn.dataset.flag === "false") {
+    sortImportantBtn.dataset.flag = "true";
+    sortNum("max", "important");
+  }
+});
+
+//Сортировка по дате
+
+sortBtnDate.setAttribute("data-flag", "true");
+sortBtnDate.addEventListener("click", ev => {
+  const allLi = document.querySelectorAll(".task");
+  ev.preventDefault();
+  deleteTag(allLi);
+  if (sortBtnDate.dataset.flag === "true") {
+    sortBtnDate.dataset.flag = "false";
+    sortNum("min", "date");
+  } else if (sortBtnDate.dataset.flag === "false") {
+    sortBtnDate.dataset.flag = "true";
+    sortNum("max", "date");
+  }
+});
+
+function sortNum(value, key) {
+  if (value === "min") {
+    const sortMin = Object.values(objectTasks).sort((prev, next) => {
+      return +next[key] - +prev[key];
+    });
+    renderTask(sortMin);
+  } else if (value === "max") {
+    const sortMax = Object.values(objectTasks).sort((prev, next) => {
+      return +prev[key] - +next[key];
+    });
+    renderTask(sortMax);
+  }
+}
+
+//Форма поиска
+searchInput.oninput = function() {
+  const val = this.value.trim();
+  const allTask = document.querySelectorAll(".task");
+  allTask.forEach(task => {
+    if (task.textContent.search(val) === -1) {
+      task.classList.add("task_hidden");
+    } else {
+      task.classList.remove("task_hidden");
+    }
+  });
+};
+
+//Получаем одну лишку
+function getTask(task, objColor) {
+  const btnEdit = task.querySelector(".task-edit");
+  const editForm = task.querySelector(".edit-form");
+  const editTextForm = task.querySelector(".edit-form__text");
+  const btnEditForm = task.querySelector('.edit-true');
+  const taskText = task.querySelector(".task-text");
+  const btnCancel = task.querySelector(".edit-false");
+  const formImportant = task.querySelector(".important-container_task");
+  const valueInput = task.querySelector(".important-value");
+  const btnImportant = task.querySelector('.task-important');
+  const impNumUp = task.querySelector(".important-up");
+  const impNumDown = task.querySelector(".important-down");
+  const buttons = task.querySelector(".buttons");
+  const id = task.dataset.id;
+
+  // Событие на чекбоксе
+  task.addEventListener("click", function(ev) {
+      if (ev.target.classList.contains("task-check")) {
+        if (ev.target.checked) {
+          checkCompleted(true, id);
+        } else {
+          checkCompleted(false, id);
+        }
+      }
+      checkButtonEvent(ev, task);
+    });
+
+
+  //Добавляю и удаляю completed при нажатии на checkbox
+  function checkCompleted(flag, id) {
+    objectTasks[id].completed = flag;
+    pushChangeLocalStor(objectTasks)
+  }
+
+
+  //Добавляю и удаляю стили для неактивного таска, а также кнопку редактированья текста
+  function checkButtonEvent(ev, task) {
+    if (ev.target.checked) {
+      task.classList.add("task_inactive");
+      btnEdit.classList.add("task-edit_inactive");
+      btnImportant.classList.add('task-important_inactive');
+    } else if (
+      ev.target.checked === false &&
+      ev.target.className === "task-check"
+    ) {
+      btnEdit.classList.remove("task-edit_inactive");
+      task.classList.remove("task_inactive");
+      btnImportant.classList.remove('task-important_inactive');
+    }
+  }
+
+
+  //Скрытие кнопок delete и edit
+  task.addEventListener("click", ev=> {
+    if (ev.target.className === "button-list") {
+      buttons.classList.toggle("buttons_active");
+    } else if (ev.target.className !== "button-list") {
+      buttons.classList.remove("buttons_active");
+    }
+  });
+
+
+  //События на кнопках редактированья событий
+    btnEdit.addEventListener("click", ev => {
+      editForm.classList.remove("edit-form_inactive");
+      editTextForm.value = taskText.textContent;
+      ev.preventDefault();
+    });
+
+    btnEditForm.addEventListener('click', ev =>{
+      editForm.classList.remove("edit-form_inactive");
+      if (!editTextForm.value) return modalAlert("Enter your text!!!");
+      taskText.textContent = editTextForm.value;
+      objectTasks[id].text = editTextForm.value;
+      editForm.classList.add("edit-form_inactive");
+      pushChangeLocalStor(objectTasks)
+      ev.preventDefault();
+    });
+
+    btnCancel.addEventListener("click", ev => {
+      editForm.classList.add("edit-form_inactive");
+      ev.preventDefault();
+    });
+
+
+  //Удаление задания
+task.addEventListener("click", function(ev) {
+  if(ev.target.className === 'task-delete'){
+    isConfirm(id, "Вы уверены?");
+  }
+});
+
+  //Событие на кнопке важности
+  task.addEventListener("click", ev => {
+    if (ev.target.className === "task-important") {
+      ev.preventDefault();
+      formImportant.classList.toggle("important-container_active");
+    } else if (ev.target.className === "btn-important_close") {
+      ev.preventDefault();
+      formImportant.classList.remove("important-container_active");
+    }
+  });
+
+
+//Добавление важности при нажатии кнопки на таске
+    valueInput.value = objectTasks[id].important;
+    impNumUp.addEventListener("click", ev => {
+      if (+valueInput.value < 5) valueInput.value++;
+      changeColor(valueInput.value);
+      objectTasks[id].important = valueInput.value;
+      pushChangeLocalStor(objectTasks);
+      ev.preventDefault();
+    });
+
+    impNumDown.addEventListener("click", ev => {
+      if (+valueInput.value > 0) valueInput.value--;
+      objectTasks[id].important = valueInput.value;
+      pushChangeLocalStor(objectTasks);
+      changeColor(valueInput.value);
+      ev.preventDefault();
+    });
+
+  //Меняю цвет
+  function changeColor(key) {
+    task.classList.forEach(className => {
+      if (className !== "task") {
+        task.classList.remove(className);
+      }
+    });
+    task.classList.add(objColor[key]);
+  }
+}
+
+//Создаю checkbox
+function createCheckbox() {
+  const label = document.createElement("label");
+  const checkbox = document.createElement("input");
+  const span = document.createElement("span");
+  span.classList.add("check-span");
+  label.classList.add("task-checkbox");
+  checkbox.setAttribute("type", "checkbox");
+  checkbox.classList.add("task-check");
+  label.appendChild(checkbox);
+  label.appendChild(span);
+  return label;
+}
+
+//Создаю блок с текстом и датой задачи
+function createContentText(date, options, task) {
+  const fragText = document.createDocumentFragment();
+  const parseDate = date.toLocaleDateString("ru", options);
+  const taskText = document.createElement("p");
+  const taskDate = document.createElement("p");
+  taskText.textContent = task.text;
+  taskDate.textContent = parseDate;
+  taskText.classList.add("task-text");
+  taskDate.classList.add("task-date");
+  fragText.appendChild(taskText);
+  fragText.appendChild(taskDate);
+  return fragText;
+}
+
+//Создаю блок для редактированья задачи
+function createEditBlock() {
+  const formEdit = document.createElement("form");
+  const textArea = document.createElement("textarea");
+  const editButtons = document.createElement("div");
+  const formBtnEdit = document.createElement("button");
+  const formBtnCancel = document.createElement("button");
+  formEdit.setAttribute("action", "#");
+  formEdit.classList.add("edit-form", "edit-form_inactive");
+  textArea.setAttribute("maxlength", "150");
+  textArea.classList.add("edit-form__text");
+  editButtons.classList.add("edit-form__buttons");
+  formBtnEdit.classList.add("btn-edit", "edit-true");
+  formBtnEdit.textContent = "Edit";
+  formBtnCancel.classList.add("btn-edit", "edit-false");
+  formBtnCancel.textContent = "Cancel";
+  formEdit.appendChild(textArea);
+  editButtons.appendChild(formBtnCancel);
+  editButtons.appendChild(formBtnEdit);
+  formEdit.appendChild(editButtons);
+  return formEdit;
+}
+
+function createImpotBlock() {
+  const formImpot = document.createElement("form");
+  const formWrapp = document.createElement("div");
+  const textInput = document.createElement("input");
+  const buttonsImpot = document.createElement("div");
+  const btnUp = document.createElement("button");
+  const btnDown = document.createElement("button");
+  const closeBtn = document.createElement("button");
+  formImpot.classList.add("important-container", "important-container_task");
+  formImpot.setAttribute("action", "#");
+  formWrapp.classList.add("importan-form__wrapp");
+  textInput.classList.add("important-value");
+  textInput.setAttribute("type", "text");
+  textInput.setAttribute("value", "0");
+  buttonsImpot.classList.add("buttons-important");
+  btnUp.classList.add("important-up");
+  btnUp.textContent = "+";
+  btnDown.textContent = "-";
+  btnDown.classList.add("important-down");
+  closeBtn.classList.add("btn-important_close");
+
+  buttonsImpot.appendChild(closeBtn);
+  buttonsImpot.appendChild(btnUp);
+  buttonsImpot.appendChild(btnDown);
+  formImpot.appendChild(formWrapp);
+  formImpot.appendChild(buttonsImpot);
+  formWrapp.appendChild(textInput);
+
+  return formImpot;
+}
+
+//Кнопка Меню для кнопок и кнопки удалить редактировать
+function createButtonBlock() {
+  const buttonList = document.createElement("div");
+  const buttons = document.createElement("div");
+  const btnEdit = document.createElement("button");
+  const btnDelete = document.createElement("button");
+  const btnImportant = document.createElement("button");
+
+  buttonList.classList.add("button-list");
+  buttons.classList.add("buttons");
+  btnEdit.classList.add("task-edit");
+  btnImportant.classList.add("task-important");
+  btnDelete.classList.add("task-delete");
+
+  buttons.appendChild(btnEdit);
+  buttons.appendChild(btnImportant);
+  buttons.appendChild(btnDelete);
+  buttonList.appendChild(buttons);
+  return buttonList;
+}
+
+//Создаю один таск
+function createLi(task, objColor, label, buttonList) {
+  const btnEdit = buttonList.querySelector(".task-edit");
+  const checkbox = label.querySelector(".task-check");
+  const li = document.createElement("li");
+  const key = task.important;
+  li.classList.add(objColor[key]);
+  li.setAttribute("data-id", task.id);
+  if (task.completed === true) {
+    li.classList.add("task", "task_inactive");
+    checkbox.checked = "true";
+    btnEdit.classList.add("task-edit", "task-edit_inactive");
+  } else {
+    li.classList.add("task");
+  }
+  return li;
+}
+
+//Согбираю разметку в кучу
+function createTask(task) {
+  //Объект формата даты
+  const date = new Date(task.date);
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+  };
+
+  //Объект классов для стилей по важности задач
+  const objColor = {
+    0: "task_zero",
+    1: "task_one",
+    2: "task_two",
+    3: "task_three",
+    4: "task_four",
+    5: "task_fife"
+  };
+
+  const label = createCheckbox();
+  const textContent = createContentText(date, options, task);
+  const formEdit = createEditBlock();
+  const buttonList = createButtonBlock();
+  const li = createLi(task, objColor, label, buttonList);
+  const formImportant = createImpotBlock();
+
+  li.appendChild(label);
+  li.appendChild(textContent);
+  li.appendChild(formImportant);
+  li.appendChild(formEdit);
+  li.appendChild(buttonList);
+
+  getTask(li, objColor);
+  return li;
+}
+
+//Модалка по типу алерта
+function modalAlert(value) {
+  const text = document.querySelector(".alert-text");
+  const modalWindow = document.querySelector(".modal-alert");
+  const alertBtn = document.querySelector(".alert-button");
+  modalWindow.classList.add("modal-alert_active");
+  text.textContent = value || "default";
+  const autoClose = window.setTimeout(() => {
+    modalWindow.classList.remove("modal-alert_active");
+  }, 3000);
+  alertBtn.addEventListener("click", ev => {
+    modalWindow.classList.remove("modal-alert_active");
+    window.clearTimeout(autoClose);
+  });
+}
+
+//Модалка по типу confirm
+
+const modal = document.querySelector(".modal-wrapp");
+const modalBtnConfirm = modal.querySelector(".confirm-btn_true");
+const modalBtnCancel = modal.querySelector(".confirm-btn_false");
+const allTask = document.querySelectorAll('.task');
+let taskId = '';
+
+function isConfirm(id, value) {
+  taskId = id;
+  const modalText = modal.querySelector(".modal-confirm__text");
+  modal.classList.add("modal-wrapp_active");
+  modalText.textContent = value || `Are you sure?`;
+}
+
+
+modalBtnCancel.addEventListener("click", ev => {
+  modal.classList.remove("modal-wrapp_active");
+});
+
+modalBtnConfirm.addEventListener("click", function (ev) {
+  const allTask = document.querySelectorAll('.task');
+  modal.classList.remove("modal-wrapp_active");
+  delete objectTasks[taskId];
+  pushChangeLocalStor(objectTasks);
+  allTask.forEach(task => {
+    if (task.dataset.id === taskId) {
+      task.remove();
+    }
+  })
+})
+
+				</script>
+				<style>
+				
+.container00{
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom , #90e5e4, #7f82d6);
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.modal-alert{
+  transform: scale(0) translateX(150px);
+  
+  width: 250px;
+  height: 118px;
+  text-align: center;
+  border-radius: 6px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  transition: linear transform .3s;
+}
+
+.modal-alert_active{
+  transform: scale(1) translateX(0);
+  transition: linear transform .5s;
+}
+.alert-text{
+  color: #000;
+  font-family: 'Exo 2', sans-serif;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  padding: 40px 15px;
+  background-color: #86a8e7;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25) inset;
+  text-shadow: -2px 2px 6px #000000;
+  
+}
+.alert-button{
+  display: block;
+  width: 50px;
+  height: 25px;
+  background:rgba(255, 255, 255,);;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .8);
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(105, 110, 105);
+  cursor: pointer;
+  margin: 10px auto 0;
+  text-transform: uppercase;
+}
+
+.modal-wrapp{
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 300;
+}
+
+.modal-wrapp_active{
+  display: flex;
+  }
+
+.modal-confirm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  height: 250px;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+  border-radius: 6px;
+  font-family: 'Exo 2', sans-serif;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #86a8e7;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25) inset;
+  text-shadow: -2px 2px 6px #000000;
+  z-index: 300;
+}
+
+.modal-confirm__buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.confirm-btn{
+  width: 50px;
+  height: 25px;
+  background:rgba(255, 255, 255, .5);;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(105, 110, 105);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+
+.container-todo{
+max-width: 768px;
+width: 100%;
+margin-top: 20px;
+border-radius: 6px;
+box-shadow: -2px 2px 17px 0px rgba(0,0,0,0.7);
+}
+
+.container-todo__header{
+  display: flex;
+  justify-content: center;
+  background-color: #86a8e7;
+}
+
+
+.search{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+
+
+
+.search-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.search-input{
+  width: 280px;
+  height: 36px;
+  font-family: 'Exo 2', sans-serif;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, .5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25) inset;
+  outline: none;
+  transition: transfor, .3s linear;
+}
+
+.search-input::placeholder{
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+.search-input:hover{
+transform: scale(1.1);
+transition: transform linear .3s;
+}
+
+.form{
+  display: flex;
+  align-items: baseline;
+}
+
+
+.header-title{
+  margin-top: 30px;
+  font-size: 42px;
+  font-style: italic;
+  color: #fff;
+  text-shadow: -2px 2px 3px #000000;
+  
+}
+
+.form-wrapp{
+  display: flex;
+  align-items: baseline;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.important-container{
+  margin-right: 20px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  z-index: 0;
+}
+
+.buttons-important{
+  display: flex;
+  flex-direction: column;
+
+}
+.important-up{
+  width: 20px;
+  height: 16px;
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 3px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+  outline: none;
+  cursor: pointer;
+  font-style: italic;
+  font-weight: 600;
+  
+}
+
+.important-down{
+  width: 20px;
+  height: 16px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+  outline: none;
+  cursor: pointer;
+  
+}
+
+
+.important-value{
+  width: 40px;
+  height: 35px;
+  text-align: center;
+  border: none;
+  margin-right: 6px;
+  border-radius: 3px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25) inset;
+  background: rgba(255, 255, 255, .5);
+  outline: none;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.text-form{
+  font-family: 'Exo 2', sans-serif;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  width: 390px;
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 15px;
+  background: rgba(255, 255, 255, .5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25) inset;
+  margin-right: 30px;
+  margin-left: 10px;
+  outline: none;
+}
+.text-form::placeholder{
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+.text-form:hover{
+  transition: transfor, .3s linear;
+  transform: scale(1.1);
+}
+
+.add-task{
+  width: 75px;
+  height: 46px;
+  background:rgba(255, 255, 255, .5);;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(105, 110, 105);
+  
+}
+
+.add-task:hover{
+  transition: transfor, .2s linear;
+  transform: scale(1.1);
+}
+.sort-buttons{
+width: 100%;
+}
+
+.sort-buttons__wrapp{
+  display: flex;
+  justify-content: center;
+}
+
+.sort-btn{
+  padding: 10px;
+  margin: 10px 5px;
+  font-size: 13px;
+  word-wrap: break-word;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, .8);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-style: italic;
+  font-weight: 600;
+
+}
+
+.task-container{
+  max-width: 960px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: url(../img/content-background.png) no-repeat;
+  background-size: cover;
+}
+
+.task-list{
+  max-width: 960px;
+  min-height: 768px;
+  width: 100%;
+  padding: 30px 80px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25) inset;
+  background: #fff;
+  border-radius: 5px;
+}
+
+
+.task{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, .8);
+}
+
+.task_hidden{
+  display: none;
+}
+
+
+
+.task_fife{
+  background-color: rgba(240, 0, 0, 0.8);
+}
+
+.task_four{
+  background-color: rgba(233, 136, 24, 0.596);
+}
+.task_three{
+  background-color: rgba(233, 212, 24, 0.514);
+}
+.task_two{
+  background-color: rgba(30, 136, 4, 0.822);
+}
+.task_one{
+  background-color: rgba(22, 54, 236, 0.589);
+}
+.task_zero{
+  background-color: rgba(255, 255, 255, 0.712);
+}
+
+
+.important-container_task{
+  position: absolute;
+  right: -93px;
+  transform: scale(0);
+  transition: linear .3s;
+}
+.important-container_active{
+  transform: scale(1);
+  transition: linear .5s;
+}
+
+.task_inactive {
+  box-shadow: none;
+  background-color: rgba(117, 109, 109, 0.747);
+  text-decoration: line-through;
+  color: aliceblue;
+}
+
+
+.task-text{
+width: 70%;
+padding-left: 10px;
+font-style: italic;
+font-weight: 600;
+font-size: 14px;
+word-wrap: break-word;
+}
+
+
+
+
+.task-date{
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 900;
+  padding-right: 30px;
+
+}
+
+.button-list{
+  width: 24px;
+  height: 24px;
+  background: url(../img/chose-button.png) no-repeat;
+  cursor: pointer;
+  position: relative;
+  top: 3px;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 70px;
+  bottom: -50px;
+  transform: scale(0) translateX(0);
+  transition: all linear .4s;
+}
+
+.buttons_active{
+  transform:  scale(1) translateX(-10px);
+  transition: all linear .7s;
+}
+
+
+ .task-edit{
+  transform: scale(1);
+  width: 30px;
+  height: 30px;
+  background: url('../img/edit-icon.png') no-repeat; 
+  background-position: center;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 50%; 
+  outline: 0;
+  cursor: pointer;
+}
+
+.task-edit:hover{
+  transform: scale(1.1);
+  transition: all linear .4s;
+}
+
+
+
+
+.edit-form{
+ position: absolute;
+ top: 0px;
+ right: -350px;
+ transform: scale(1);
+ transition: linear all .4s;
+}
+
+.task-edit_inactive{
+  transform: scale(0);
+}
+
+.edit-form_inactive{
+  transform: scale(0);
+}
+.edit-form__text{
+  width: 250px;
+  height: 75px;
+  font-family: 'Exo 2', sans-serif;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  padding: 15px;
+  background: rgba(255, 255, 255, .5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25) inset;
+  outline: none;
+}
+
+.edit-form__buttons{
+display: flex;
+justify-content: flex-end;
+margin-top: 5px;
+}
+
+
+.btn-edit{
+  width: 50px;
+  height: 25px;
+  background:rgba(255, 255, 255, .5);;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(105, 110, 105);
+  margin-left: 10px;
+}
+
+.task-important{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(../img/icon-!.png) no-repeat;
+  background-position: center;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 50%; 
+  outline: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+.task-important:hover{
+  transition: all linear .4s;
+  transform: scale(1.1);
+  background-color:rgb(255, 255, 0);
+}
+
+.btn-important_close{
+  width: 17px;
+  height: 17px;
+  /* background-color: rgba(255, 0, 0, 1); */
+  background: url(../img/close-button.png) no-repeat;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  position: absolute;
+  top:-22px;
+  right: 18px;
+  transition: all linear .5s;
+}
+
+.btn-important_close:hover{
+transform: scale(1.1);
+background-color: rgba(255, 0, 0, 1);
+transition: all linear .5s;
+}
+
+.task-delete{
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(../img/delet-icon.png) no-repeat;
+  background-position: center;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 50%; 
+  outline: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+
+.task-delete:hover{
+  transition: all linear .4s;
+  transform: scale(1.1);
+  background-color:rgba(255, 0, 0, 1);
+}
+
+.task-important_inactive{
+  display: none;
+}
+
+
+.task-check{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+}
+.check-span{
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .55) inset;
+  background-color: #6dc0c8;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 10px) ;
+}
+.check-span::before{
+  content: '';
+  width: 16px;
+  height: 16px;
+  background:url('../img/checkbox-checked.png') no-repeat;
+  background-color: rgba(117, 109, 109, 0.747);
+  position: absolute;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  opacity: 0;
+}
+.task-check:checked + .check-span{
+  box-shadow: none;
+  background-color: rgba(117, 109, 109, 0.747);
+}
+.task-check:checked + .check-span::before{
+  opacity: 1;
+}
+
+
+
+
+
+::-webkit-scrollbar-button {
+  background-image:url('');
+  background-repeat:no-repeat;
+  width:5px;
+  height:0px
+  }
+  
+  ::-webkit-scrollbar-track {
+  background-color:#ecedee
+  }
+  
+  ::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-color:#6dc0c8;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover{
+  background-color:#56999f;
+  }
+  
+  ::-webkit-resizer{
+  background-image:url('');
+  background-repeat:no-repeat;
+  width:4px;
+  height:0px
+  }
+  
+  ::-webkit-scrollbar{
+  width: 10px;
+  }
+				</style>
+  <div class="container00">
+    <div class="modal-alert">
+      <p class="alert-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <button class="alert-button">ok</button>
+    </div>
+    <div class="modal-wrapp">
+      <div class="modal-confirm">
+        <p class="modal-confirm__text">Are you shure is delete?</p>
+        <div class="modal-confirm__buttons">
+          <button class="confirm-btn confirm-btn_false" value="false">No</button>
+          <button class="confirm-btn confirm-btn_true" value="true">Yes</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="container-todo">
+      <div class="container-todo__header">
+        <div class="header-wrapp">
+          <div class="search">
+            <h1 class="header-title">My to do list</h1>
+            <form action="" class='search-form'>
+              <input type="text" class="search-input" placeholder="Enter your search text" maxlength="20">
+            </form>
+          </div>
+          <div class="form-wrapp">
+            <form action="#" class="important-container">
+              <div class="importan-form__wrapp">
+                <input type="text" class="important-value" value="0">
+              </div>
+              <div class="buttons-important">
+                <button class="important-up">+</button>
+                <button class="important-down">-</button>
+              </div>
+            </form>
+            <form action="#" class="form">
+              <input type="text" class="text-form" maxlength="150" placeholder="Add New Todo">
+            </form>
+            <button class="add-task">Add task</button>
+          </div>
+        </div>
+      </div>
+      <div class="sort-buttons">
+        <div class="sort-buttons__wrapp">
+          <button class="sort-btn sort-btn_text">Sort text</button>
+          <button class="sort-btn sort-btn_completed">Sort completed</button>
+          <button class="sort-btn sort-btn_important">Sort important</button>
+          <button class="sort-btn sort-btn_date">Sort date</button>
+        </div>
+      </div>
+      <div class="task-container">
+        <ul class="task-list">
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+
+				
+				
+				
+				
+				
+				
 			</header>	
 				<h1>Грето! <br>Знання про домашніх<br>
 					тваринок<br> тобі в долоні,<br> 
@@ -1930,5 +3219,7 @@ return false;
 		</script>
 <!--weather-->
 		<script src="js/weather.js"></script>
+<!--alexToDo-->
+  		<script src="script/script.js"></script>
 	</body>
 </html>
