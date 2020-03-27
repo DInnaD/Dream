@@ -340,6 +340,37 @@ accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',/*/'690999480
     filter: function(image) {
 
       console.log(image);
+/*const MAX = 95;
+const MIN = 0;
+const MAXM = -30;
+const MINM = -1;
+for(let i = MIN; i <= MAX; i++){
+  console.log(i);
+  // в checkValue будет строк 1 или 2 или 3 и тд
+  const checkValue = String(i); 
+   // сюда можно вставить условие
+   // if((c === checkValue && f === checkValue) && image.tags.indexOf( checkValue )  >= 0 && foundImages < maxImages ){
+   //    foundImages = foundImages + 1;
+    	 return true;
+   //  }
+    return false;
+}
+
+for(let i = MINM; i <= MAXM; i++){
+  console.log(i);
+  // в checkValueM будет строк 1 или 2 или 3 и тд
+  const checkValueM = String(i);
+  
+  // в checkValue будет строк 1 или 2 или 3 и тд
+  const checkValueNull = (replace)String(i);
+   // сюда можно вставить условие
+   // if((c === checkValueNull && f === checkValueNull) && image.tags.indexOf( checkValueM )  >= 0 && foundImages < maxImages ){
+   //    foundImages = foundImages + 1; 
+   	 return true;
+   //  }
+   
+    return false;
+}*/
        if(( f == '86') && (image.tags.indexOf('86') >= 0 && foundImages < maxImages)) {
             foundImages = foundImages + 1;
             return true;
