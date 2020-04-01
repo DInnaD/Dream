@@ -42,6 +42,19 @@ instruction
 https://mak.arcanes.ru/sozdanie_mak
 
 -->	
+		<script>
+		<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+		</script>
 			<script>
 var canvas = document.getElementById("slider");
 var ctx = canvas.getContext("2d");
@@ -123,8 +136,13 @@ download_img = function(el) {
 			</filter>
 		</svg>
 		<div class="container">
+			<a href="#" onclick="toggle_visibility('accordionExample');">
+				Тут все про Грету! #1</a>
+<div id="accordionExample">
+			
     <div class="accordion" id="accordionExample">
 			<header class="codrops-header">	
+				
       <div class="card">
     <div class="card-header" id="headingOne">
       <h1 class="mb-0">
@@ -147,6 +165,8 @@ download_img = function(el) {
         </div>
     </div>
   </div>
+				
+				<!----></div>
   
 				<div class="codrops-links">
 					<a class="codrops-icon codrops-icon--prev" href="https://dinnad.github.io/DrawingDreams/" title="Розмалюй Мрії, Дитино!"><span>Розмалюй Мрії, Дитино!</span></a>
