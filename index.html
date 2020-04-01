@@ -398,7 +398,7 @@ console.log(checkValueZero.replaceAt(0, "0")); //should display 0C World
        foundImages = foundImages + 1; 
     }    
        
-      else if((f < 0 || c < 0)&&(((( f == '-' + 'checkValue')&&( c == '-' + 'checkValue')) && (image.tags.indexOf('checkValueZero') >= 0 && foundImages < maxImages)) ){
+      else if((f < 0 || c < 0)&&(((( f == '-' + checkValue)&&( c == '-' + checkValue)) && (image.tags.indexOf(checkValueZero) >= 0 && foundImages < maxImages)) ){
             foundImages = foundImages + 1;
             return true;
          }
