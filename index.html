@@ -43,18 +43,19 @@ https://mak.arcanes.ru/sozdanie_mak
 
 -->	
 		
-		<script type="text/javascript">
+		
+<script type="text/javascript">
 
     function toggle_visibility(id) {
        var e = document.getElementById(id);
-       if(e.style.display == 'block')
-          e.style.display = 'none';
-       else
+       if(e.style.display == 'none')
           e.style.display = 'block';
+       else
+          e.style.display = 'none';
     }
 
-		</script>
-			<script>
+</script>
+<script>
 var canvas = document.getElementById("slider");
 var ctx = canvas.getContext("2d");
 var ox = canvas.width / 2;
@@ -135,18 +136,18 @@ download_img = function(el) {
 			</filter>
 		</svg>
 		<div class="container">
-			<a href="#" onclick="toggle_visibility('foo');">
+			<a href="#" onclick="toggle_visibility('toggle');">
 				Тут все про Грету! #1</a>
-<div id="foo">
+<div id="toggle1">
 	<!--h1><span>Тут все про Грету!</span></h1-->		
 				<h1><span>Грета - Особиста Палітра Емоцій Зараз</span></h1>
 				<h1><span>Цю палітру можна визначити, тисни:"Запитати"</span></h1>
 				<h1><span>Потім розфарбувати нею своє Повсякденне Життя і Контент</span></h1>		
-				<h1><span>КультураІТ курс і Підписка на місяць чи рік або FREE для тих хто <a href="https://web.telegram.org/#/im?p=g375715922" alt="Додайся в телеграм чат. ?Як стати волонтером проекту?">волонтер проекту</a></span></h1>				
-				<h1><span>Чат Сімейний та Англійська та Версія в Віртуальній Реальності вже в дорозі:)</span></h1>
-        </div>
+				<h1><span>Підписка на місяць чи рік або FREE для тих хто <a href="https://web.telegram.org/#/im?p=g375715922" alt="Додайся в телеграм чат. ?Як стати волонтером проекту?">волонтер проекту</a></span></h1>				
+				<h1><span>Чат Сімейний за геолокацією та Англійська та Версія в Віртуальній Реальності вже в дорозі:)</span></h1>
+</div>
 			
-    <div class="accordion" id="accordionExample">
+    <!-- материал ангуляра то юзатиме div class="accordion" id="accordionExample">
 			<header class="codrops-header">	
 				
       <div class="card">
@@ -159,9 +160,7 @@ download_img = function(el) {
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-      
-				<!--h1><span>Тут все про Грету!</span></h1-->		
+      <div class="card-body">		
 				<h1><span>Грета - Особиста Палітра Емоцій Зараз</span></h1>
 				<h1><span>Цю палітру можна визначити, тисни:"Запитати"</span></h1>
 				<h1><span>Потім розфарбувати нею своє Повсякденне Життя і Контент</span></h1>		
@@ -170,7 +169,7 @@ download_img = function(el) {
         
         </div>
     </div>
-  </div>
+  </div-->
 				
 				
   
