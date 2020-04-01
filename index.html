@@ -371,6 +371,41 @@ accessToken: '6715816580.1677ed0.2e945d7bd1ae403cbdcca139dbc1b450',/*/'690999480
     filter: function(image) {
 
       console.log(image);
+	    const MAX = 85;
+const MIN = 0;
+const MAXMINUS = 85;
+const MINMINUS = 0;
+for(let i = MIN; i <= MAX; i++){
+  console.log(i);
+  // в checkValue будет строк 1 или 2 или 3 и тд
+ 
+if(c < 0){
+String.prototype.replaceAt=function(index, replacement) {
+  return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+}
+var checkValueZero = c;
+console.log(checkValueZero.replaceAt(0, "0")); //should display 0C World 
+}
+
+  const checkValue = String(i); 
+   // сюда можно вставить условие
+
+
+    if((f === checkValue || c === checkValue) && image.tags.indexOf( c ) ){
+       foundImages = foundImages + 1; 
+    }    
+       
+      else if((f < 0 || c < 0)&&(((( f == '-' + 'checkValue')&&( c == '-' + 'checkValue')) && (image.tags.indexOf('checkValueZero') >= 0 && foundImages < maxImages)) ){
+            foundImages = foundImages + 1;
+            return true;
+         }
+      else if((true) && ((((image.tags.indexOf('wish') && image.tags.indexOf('friend')) && image.tags.indexOf('family')) && 
+			  ((image.tags.indexOf('cart') && image.tags.indexOf('would'))) && image.tags.indexOf('map')) >= 0 && foundImages < maxImages)) {
+            foundImages = foundImages + 1;
+            return true;
+         }
+return false;
+
 /*const MAX = 95;
 const MIN = 0;
 const MAXM = -30;
@@ -402,6 +437,7 @@ for(let i = MINM; i <= MAXM; i++){
    
     return false;
 }*/
+	    /*
        if(( f == '86') && (image.tags.indexOf('86') >= 0 && foundImages < maxImages)) {
             foundImages = foundImages + 1;
             return true;
@@ -874,7 +910,7 @@ for(let i = MINM; i <= MAXM; i++){
             return true;
          }
          
-	return false;
+	return false; */
     },	  
   after: function() {
     // disable button if no more results to load
@@ -3726,27 +3762,24 @@ const MINMINUS = 0;
 for(let i = MIN; i <= MAX; i++){
   console.log(i);
   // в checkValue будет строк 1 или 2 или 3 и тд
-//checkValueZero = c;
-  var re = //gi;
-var str = 'Яблоки круглые и яблоки сочные.';
-var newstr = str.replace(re, 'апельсины');
-console.log(newstr); 
-  // апельсины круглые и апельсины сочные.  isitgood function for me?
+ 
+if(c < 0){
+String.prototype.replaceAt=function(index, replacement) {
+  return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+}
+var checkValueZero = c;
+console.log(checkValueZero.replaceAt(0, "0")); //should display 0C World 
+}
+
   const checkValue = String(i); 
    // сюда можно вставить условие
-//if(MIN < 0){
-   // if((f === checkValue || c === checkValue) && image.tags.indexOf( checkValue ) ){
-   //    foundImages = foundImages + 1; 
-   //  }
-}
-  
-  if(( f == '86') && (image.tags.indexOf('86') >= 0 && foundImages < maxImages)) {
-            foundImages = foundImages + 1;
-            return true;
-         }
-	    
+
+
+    if((f === checkValue || c === checkValue) && image.tags.indexOf( c ) ){
+       foundImages = foundImages + 1; 
+    }    
        
-         else if((MIN < 0)&&(((( f == 'checkValue')&&( c == 'checkValue')) && (image.tags.indexOf('checkValueZero') >= 0 && foundImages < maxImages)) ){
+      else if((f < 0 || c < 0)&&(((( f == '-' + 'checkValue')&&( c == '-' + 'checkValue')) && (image.tags.indexOf('checkValueZero') >= 0 && foundImages < maxImages)) ){
             foundImages = foundImages + 1;
             return true;
          }
