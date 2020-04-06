@@ -46,9 +46,16 @@ a:hover, a:focus {
 	overflow: hidden;
 }
 
+
+
 /* Header */
 .codrops-header {
 	padding: 20em 1em;
+	text-align: center;
+}
+
+.codrops-header1 {
+	padding: 0.5em 1em;
 	text-align: center;
 }
 
@@ -183,4 +190,5 @@ a:hover, a:focus {
 	padding: 6em 1em;
 	text-align: center;
 }
+
 }
