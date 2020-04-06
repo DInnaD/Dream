@@ -48,7 +48,7 @@ a:hover, a:focus {
 
 /* Header */
 .codrops-header {
-	/*padding: 2em 1em;*/
+	padding: 20em 1em;
 	text-align: center;
 }
 
@@ -177,4 +177,10 @@ a:hover, a:focus {
 	margin: 0;
 	padding: 0.5em;
 	font-size: 1em;
+}
+@media screen and (max-width: 49.125em) {
+.codrops-header {
+	padding: 6em 1em;
+	text-align: center;
+}
 }
