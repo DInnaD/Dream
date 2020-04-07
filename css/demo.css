@@ -59,6 +59,11 @@ a:hover, a:focus {
 	text-align: center;
 }
 
+.codrops-header0 {
+	padding: 0.5em 1em;
+	text-align: left;
+}
+
 .codrops-header h1 {
 	margin: 0.5em 0 0;
 	font-size: 2.25em;
