@@ -64,6 +64,12 @@ a:hover, a:focus {
 	text-align: left;
 }
 
+.codrops-header0 h6 span {
+    font-family: inherit;
+    margin: 0 0 .75em 0;
+    text-align: center;
+}
+
 .codrops-header h1 {
 	margin: 0.5em 0 0;
 	font-size: 2.25em;
